@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String []week = {"MON","TUE","WED","THU","FIR","SAT","SUN"};
+		char []letter = new char[26];
+		for(int i=0;i<letter.length;i++){
+			letter[i] = (char)('A'+i);
+		}
+		char []hour = new char[24];
+		for(int i=0;i<hour.length;i++){
+			if(i<10){
+				hour[i] = (char)('0'+i);
+			}
+			else{
+				hour[i] = (char)('A'+i-10);
+			}
+		}
+		String str1 = in.nextLine();
+		String str2 = in.nextLine();
+		String str3 = in.nextLine();
+		String str4 = in.nextLine();
+		circle1:
+		for(int i=0;i<str1.length();i++){
+			if(str2.indexOf(str1.charAt(i))!=-1&&Character.isUpperCase(str1.charAt(i))){
+				for(int j=0;j<letter.length;j++){
+					if(letter[j]==str1.charAt(i)){
+					System.out.print(week[j]+" ");
+					break circle1;
+					}
+				}
+			}
+		}
+		
+		circle2:
+		for(int i = 0,j=0;i<str1.length();i++){
+			if(str2.indexOf(str1.charAt(i))!=-1&&Character.isLetter(str1.charAt(i))){
+				j++;
+				if(j==2){
+					for(int k=0;k<hour.length;k++){
+						if(hour[k]==str1.charAt(i)){
+							System.out.print(String.format("%02d",k+1)+":");
+							break circle2;
+						}
+					}
+				}
+			}
+		}
+		for(int i = 0;i<str3.length();i++){
+			if(str4.indexOf(str3.charAt(i))!=-1&&Character.isLetter(str3.charAt(i))){
+				System.out.println(String.format("%02d", str4.indexOf(str3.charAt(i))));
+				break;
+			}
+		}	
+		in.close();
+	}
+
+}
